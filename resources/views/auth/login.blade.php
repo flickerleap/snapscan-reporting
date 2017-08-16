@@ -22,7 +22,7 @@
 
     <!-- iCheck -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
-    
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,7 +36,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="logo">
-        <a href="{{ url('/') }}"><img src="{{ asset('storage/Rivers-Logo-Black.png') }}"></a>
+        <a href="{{ url('/') }}"><img src="{{ asset('storage/rivers-logo-black.png') }}"></a>
     </div>
 
     <!-- /.login-logo -->
