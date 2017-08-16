@@ -18,6 +18,7 @@ class MerchantController extends AppBaseController
 
     public function __construct(MerchantRepository $merchantRepo)
     {
+        $this->middleware('auth');
         $this->merchantRepository = $merchantRepo;
     }
 

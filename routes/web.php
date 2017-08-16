@@ -18,10 +18,8 @@ Auth::routes();
 Route::resource('merchants', 'MerchantController');
 
 Route::resource('codes', 'CodeController');
-Auth::routes();
+
+Route::resource('users', 'UserController');
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::post('/dashboard', 'HomeController@index')->name('dashboard');
-
-
-Route::resource('users', 'UserController');

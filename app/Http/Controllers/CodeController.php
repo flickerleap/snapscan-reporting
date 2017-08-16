@@ -18,6 +18,7 @@ class CodeController extends AppBaseController
 
     public function __construct(CodeRepository $codeRepo)
     {
+        $this->middleware('auth');
         $this->codeRepository = $codeRepo;
     }
 
