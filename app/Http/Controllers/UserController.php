@@ -121,7 +121,6 @@ class UserController extends AppBaseController
 
         if (empty($user)) {
             Flash::error('User not found');
-
             return redirect(route('users.index'));
         }
 
