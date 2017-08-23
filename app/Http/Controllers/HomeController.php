@@ -76,8 +76,6 @@ class HomeController extends Controller
 
         $url = 'https://pos.snapscan.io/merchant/api/v1/payments?page=1&perPage=100&startDate='.$from.'&endDate='.$to.'&snapCode=' . $code->reference;
 
-        //Log::info('Curl Request: curl -u ' . $merchant->api_key . ': "' . $url . '"');
-
         $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
