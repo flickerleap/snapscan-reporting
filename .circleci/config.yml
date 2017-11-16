@@ -17,7 +17,7 @@ jobs:
       - run: composer require "squizlabs/php_codesniffer" --ignore-platform-reqs
       - run:
           name: php code sniffer
-          command: vendor/bin/phpcs --standard=PSR2 src/ -n
+          command: vendor/bin/phpcs --standard=PSR2 app/ -n
 workflows:
   version: 2
   build-all:
