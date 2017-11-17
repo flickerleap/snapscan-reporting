@@ -55,5 +55,4 @@ class Merchant extends Model
     public static $rules = [
 
     ];
-
 }
