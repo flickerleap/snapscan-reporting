@@ -162,4 +162,12 @@ class UserController extends AppBaseController
 
         return redirect(route('users.index'));
     }
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function merchants()
+    {
+        return $this->belongsToMany('App\Merchant');
+    }
 }
