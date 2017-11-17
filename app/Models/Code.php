@@ -22,7 +22,7 @@ class Code extends Model
     use SoftDeletes;
 
     public $table = 'codes';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -56,8 +56,6 @@ class Code extends Model
      * @var array
      */
     public static $rules = [
-        
-    ];
 
-    
+    ];
 }

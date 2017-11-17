@@ -22,7 +22,7 @@ class User extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -56,8 +56,14 @@ class User extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * The roles that belong to the user.
+     */
+    public function merchants()
+    {
+        return $this->belongsToMany('App\Models\Merchant');
+    }
 }

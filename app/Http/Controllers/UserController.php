@@ -44,7 +44,9 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('users.create');
+        $merchants = \DB::table('merchants')->orderBy('name')->pluck('name', 'id');
+
+        return view('users.create')->with('merchants', $merchants);
     }
 
     /**
@@ -61,6 +63,8 @@ class UserController extends AppBaseController
         $input['password'] = bcrypt($input['password']);
 
         $user = $this->userRepository->create($input);
+
+        $user->merchants()->sync([1, 2, 3]);
 
         Flash::success('User saved successfully.');
 
@@ -104,7 +108,9 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.edit')->with('user', $user);
+        $merchants = \DB::table('merchants')->orderBy('name')->pluck('name', 'id');
+
+        return view('users.edit')->with('user', $user)->with('merchants', $merchants);
     }
 
     /**
@@ -133,6 +139,8 @@ class UserController extends AppBaseController
         }
 
         $user = $this->userRepository->update($inputs, $id);
+
+        $user->merchants()->sync($inputs['merchants']);
 
         Flash::success('User updated successfully.');
 

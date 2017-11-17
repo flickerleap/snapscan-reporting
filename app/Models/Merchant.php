@@ -21,7 +21,7 @@ class Merchant extends Model
     use SoftDeletes;
 
     public $table = 'merchants';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -53,8 +53,14 @@ class Merchant extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * The roles that belong to the user.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }
