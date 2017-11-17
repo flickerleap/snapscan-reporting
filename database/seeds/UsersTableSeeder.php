@@ -15,6 +15,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Flicker Leap',
             'email' => 'admin@flickerleap.com',
             'password' => bcrypt('password'),
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
         ]);
     }
 }

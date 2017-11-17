@@ -41,13 +41,16 @@ class HomeController extends Controller
 
             return view('home')
                 ->with('payments', $payments);
-        } else if ($request->isMethod('post') && $request->has('merchant_id')) {
-            $codes = $this->codeRepository->all()->where('merchant_id', $request->input('merchant_id'))->pluck('name', 'id');
+        } elseif ($request->isMethod('post') && $request->has('merchant_id')) {
+            $codes = $this->codeRepository->all()
+                ->where('merchant_id', $request->input('merchant_id'))
+                ->pluck('name', 'id');
 
             return view('home')
                 ->with('codes', $codes);
         } else {
-            $merchants = $this->merchantRepository->all()->pluck('name', 'id');
+            $user_merchants = \App\Models\User::find(\Auth::user()->id)->merchants()->pluck('id')->toArray();
+            $merchants = $this->merchantRepository->all()->whereIn('id', $user_merchants)->pluck('name', 'id');
 
             return view('home')
                 ->with('merchants', $merchants);
@@ -74,7 +77,12 @@ class HomeController extends Controller
             $request->input('end_date_year')
         ));
 
-        $url = 'https://pos.snapscan.io/merchant/api/v1/payments?page=1&perPage=100&startDate='.$from.'&endDate='.$to.'&snapCode=' . $code->reference;
+        $url = 'https://pos.snapscan.io/merchant/api/v1/payments?page=1&perPage=100&startDate='
+            .$from
+            .'&endDate='
+            .$to
+            .'&snapCode='
+            .$code->reference;
 
         $ch = curl_init($url);
 
@@ -110,7 +118,14 @@ class HomeController extends Controller
 
         if (isset($header['X-Total-Pages']) && $header['X-Total-Pages'] > 1) {
             for ($i = 2; $i <= $header['X-Total-Pages']; $i++) {
-                $url = 'https://pos.snapscan.io/merchant/api/v1/payments?page=' . $i . '&perPage=100&startDate='.$from.'&endDate='.$to.'&snapCode=' . $code->reference;
+                $url = 'https://pos.snapscan.io/merchant/api/v1/payments?page='
+                    .$i
+                    .'&perPage=100&startDate='
+                    .$from
+                    .'&endDate='
+                    .$to
+                    .'&snapCode='
+                    .$code->reference;
 
                 //Log::info('Curl Request: curl -u ' . $merchant->api_key . ': "' . $url . '"');
 

@@ -32,4 +32,9 @@ class MerchantRepository extends BaseRepository
     {
         return Merchant::class;
     }
+
+    public function users()
+    {
+        return Merchant::belongsToMany('App\Models\User');
+    }
 }

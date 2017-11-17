@@ -55,4 +55,12 @@ class Merchant extends Model
     public static $rules = [
 
     ];
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

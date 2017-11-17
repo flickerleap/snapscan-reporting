@@ -33,4 +33,9 @@ class UserRepository extends BaseRepository
     {
         return User::class;
     }
+
+    public function merchants()
+    {
+        return User::belongsToMany('App\Models\Merchant');
+    }
 }
