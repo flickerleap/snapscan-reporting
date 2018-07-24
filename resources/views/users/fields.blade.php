@@ -16,10 +16,21 @@
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
+<!-- Merchants Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('merchants', 'Merchants:') !!}
+    <div class="clearfix"></div>
+    @foreach ($merchants as $merchant_id => $merchant_name)
+        <div class="form-group col-sm-4">
+            <label class="checkbox-inline">
+                @if(isset($user))
+                    {!! Form::checkbox('merchants[]', $merchant_id, in_array($merchant_id, $user->merchants()->pluck('id')->toArray())) !!} {{ $merchant_name }}
+                @else
+                    {!! Form::checkbox('merchants[]', $merchant_id, null) !!} {{ $merchant_name }}
+                @endif
+            </label>
+        </div>
+    @endforeach
 </div>
 
 <!-- Submit Field -->

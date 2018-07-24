@@ -10,7 +10,8 @@
     <a href="{!! route('codes.index') !!}"><i class="fa fa-qrcode"></i><span>Codes</span></a>
 </li>
 
+@if (Auth::id() === 1)
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
     <a href="{!! route('users.index') !!}"><i class="fa fa-edit"></i><span>Users</span></a>
 </li>
-
+@endif
